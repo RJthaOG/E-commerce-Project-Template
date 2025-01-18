@@ -1,60 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Confirmation</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="checkout.html">Checkout</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="confirmation.html">Confirmation</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <div class="container mt-5">
-      <h1>Order Confirmation</h1>
-      <div id="order-summary">
-        <!-- Order summary will be dynamically inserted here -->
-      </div>
-      <p>
-        Thank you for your business! Your order will be shipped within 3-5
-        business days.
-      </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="checkout.html">Checkout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="confirmation.html">Confirmation</a>
+        </li>
+      </ul>
     </div>
+  </nav>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-       
+  <div class="container mt-5">
+    <h1>Order Confirmation</h1>
+    <div id="order-summary">
+      <!-- Order summary will be dynamically inserted here -->
+    </div>
+    <p>
+      Thank you for your business! Your order will never be shipped 👌
+    </p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
+      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+      if (!userInfo.email) {
+        document.getElementById("order-summary").innerHTML = "<p>No order information available.</p>";
+        return;
+      }
+
+      const userInfoHTML = `
+        <h2>Shipping Information</h2>
+        <p><strong>email:</strong> ${userInfo.email}</p>
+        <p><strong>address:</strong> ${userInfo.address} ${userInfo.apartment || ''}</p>
+        <p><strong>city:</strong> ${userInfo.city}</p>
+        <p><strong>state:</strong> ${userInfo.state}</p>
+        <p><strong>zip:</strong> ${userInfo.zip}</p>
+      `;
+      document.getElementById("order-summary").innerHTML = userInfoHTML;
+
+      if (cartItems.length === 0) {
+        document.getElementById("order-summary").innerHTML += "<p>Your cart is empty.</p>";
+        return;
+      }
+
+      let total = 0;
+      let summaryHTML = "<h2>Order Summary</h2><ul class='list-group mb-3'>";
+      cartItems.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        summaryHTML += `
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">${item.name}</h6>
+              <small class="text-muted">Quantity: ${item.quantity}</small>
+            </div>
+            <span class="text-muted">$${itemTotal.toFixed(2)}</span>
+          </li>
+        `;
       });
-    </script>
-  </body>
+      const tax = total * 0.15;
+      const grandTotal = total + tax;
+      summaryHTML += `
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Subtotal</span>
+          <strong>$${total.toFixed(2)}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Tax (15%)</span>
+          <strong>$${tax.toFixed(2)}</strong>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          <span>Total</span>
+          <strong>$${grandTotal.toFixed(2)}</strong>
+        </li>
+      </ul>`;
+      document.getElementById("order-summary").innerHTML += summaryHTML;
+    });
+  </script>
+</body>
+
 </html>

@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 </head>
+<style>
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .text-danger {
+    color: red;
+  }
+
+  #error-message {
+    margin-top: 1rem;
+  }
+</style>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,144 +44,286 @@
     </div>
   </nav>
 
-    <div class="container mt-5">
-      <h1>Checkout</h1>
-      <div id="cart-summary">
-        <!-- Cart summary will be dynamically inserted here -->
-      </div>
-      <form id="checkout-form">
-        <h2>Login</h2>
-        <div class="form-group">
-          <label for="email"
-            >Email address <span class="text-danger">*</span></label
-          >
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="password"
-            >Password <span class="text-danger">*</span></label
-          >
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            placeholder="Enter your password"
-            required
-          />
-        </div>
-        <h2>Shipping Address</h2>
-        <div class="form-group">
-          <label for="address"
-            >Address <span class="text-danger">*</span></label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="address"
-            placeholder="Enter your address"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="apartment">Apartment Number</label>
-          <input
-            type="text"
-            class="form-control"
-            id="apartment"
-            placeholder="Enter your apartment number (optional)"
-          />
-        </div>
-        <div class="form-group">
-          <label for="city">City <span class="text-danger">*</span></label>
-          <input
-            type="text"
-            class="form-control"
-            id="city"
-            placeholder="Enter your city"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="state">State <span class="text-danger">*</span></label>
-          <select class="form-control" id="state" required>
-            <option value="">Select your state</option>
-            <option value="AL">AL</option>
-            <option value="AK">AK</option>
-            <option value="AZ">AZ</option>
-            <option value="AR">AR</option>
-            <option value="CA">CA</option>
-            <option value="CO">CO</option>
-            <option value="CT">CT</option>
-            <option value="DE">DE</option>
-            <option value="FL">FL</option>
-            <option value="GA">GA</option>
-            <option value="HI">HI</option>
-            <option value="ID">ID</option>
-            <option value="IL">IL</option>
-            <option value="IN">IN</option>
-            <option value="IA">IA</option>
-            <option value="KS">KS</option>
-            <option value="KY">KY</option>
-            <option value="LA">LA</option>
-            <option value="ME">ME</option>
-            <option value="MD">MD</option>
-            <option value="MA">MA</option>
-            <option value="MI">MI</option>
-            <option value="MN">MN</option>
-            <option value="MS">MS</option>
-            <option value="MO">MO</option>
-            <option value="MT">MT</option>
-            <option value="NE">NE</option>
-            <option value="NV">NV</option>
-            <option value="NH">NH</option>
-            <option value="NJ">NJ</option>
-            <option value="NM">NM</option>
-            <option value="NY">NY</option>
-            <option value="NC">NC</option>
-            <option value="ND">ND</option>
-            <option value="OH">OH</option>
-            <option value="OK">OK</option>
-            <option value="OR">OR</option>
-            <option value="PA">PA</option>
-            <option value="RI">RI</option>
-            <option value="SC">SC</option>
-            <option value="SD">SD</option>
-            <option value="TN">TN</option>
-            <option value="TX">TX</option>
-            <option value="UT">UT</option>
-            <option value="VT">VT</option>
-            <option value="VA">VA</option>
-            <option value="WA">WA</option>
-            <option value="WV">WV</option>
-            <option value="WI">WI</option>
-            <option value="WY">WY</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="zip">Zip Code <span class="text-danger">*</span></label>
-          <input
-            type="text"
-            class="form-control"
-            id="zip"
-            placeholder="Enter your zip code"
-            required
-          />
-        </div>
-        <div id="error-message" class="text-danger"></div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  <div class="container mt-5">
+    <h1>Checkout</h1>
+    <div id="cart-summary">
+      <!-- Cart summary will be dynamically inserted here -->
     </div>
+    <form id="checkout-form">
+      <h2>Login</h2>
+      <div class="form-group">
+        <label for="email">Email address <span class="text-danger">*</span></label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password <span class="text-danger">*</span></label>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password" required />
+      </div>
+      <h2>Shipping Address</h2>
+      <div class="form-group">
+        <label for="address">Address <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="address" placeholder="Enter your address" required />
+      </div>
+      <div class="form-group">
+        <label for="apartment">Apartment Number</label>
+        <input type="text" class="form-control" id="apartment" placeholder="Enter your apartment number (optional)" />
+      </div>
+      <div class="form-group">
+        <label for="city">City <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="city" placeholder="Enter your city" required />
+      </div>
+      <div class="form-group">
+        <label for="state">State <span class="text-danger">*</span></label>
+        <select class="form-control" id="state" required>
+          <option value="">Select your state</option>
+          <option value="AL">AL</option>
+          <option value="AK">AK</option>
+          <option value="AZ">AZ</option>
+          <option value="AR">AR</option>
+          <option value="CA">CA</option>
+          <option value="CO">CO</option>
+          <option value="CT">CT</option>
+          <option value="DE">DE</option>
+          <option value="FL">FL</option>
+          <option value="GA">GA</option>
+          <option value="HI">HI</option>
+          <option value="ID">ID</option>
+          <option value="IL">IL</option>
+          <option value="IN">IN</option>
+          <option value="IA">IA</option>
+          <option value="KS">KS</option>
+          <option value="KY">KY</option>
+          <option value="LA">LA</option>
+          <option value="ME">ME</option>
+          <option value="MD">MD</option>
+          <option value="MA">MA</option>
+          <option value="MI">MI</option>
+          <option value="MN">MN</option>
+          <option value="MS">MS</option>
+          <option value="MO">MO</option>
+          <option value="MT">MT</option>
+          <option value="NE">NE</option>
+          <option value="NV">NV</option>
+          <option value="NH">NH</option>
+          <option value="NJ">NJ</option>
+          <option value="NM">NM</option>
+          <option value="NY">NY</option>
+          <option value="NC">NC</option>
+          <option value="ND">ND</option>
+          <option value="OH">OH</option>
+          <option value="OK">OK</option>
+          <option value="OR">OR</option>
+          <option value="PA">PA</option>
+          <option value="RI">RI</option>
+          <option value="SC">SC</option>
+          <option value="SD">SD</option>
+          <option value="TN">TN</option>
+          <option value="TX">TX</option>
+          <option value="UT">UT</option>
+          <option value="VT">VT</option>
+          <option value="VA">VA</option>
+          <option value="WA">WA</option>
+          <option value="WV">WV</option>
+          <option value="WI">WI</option>
+          <option value="WY">WY</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="zip">Zip Code <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="zip" placeholder="Enter your zip code" required />
+      </div>
+      <div id="error-message" class="text-danger"></div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cartSummary = document.getElementById("cart-summary");
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        
+      function displayCartSummary() {
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cartItems.length === 0) {
+          cartSummary.innerHTML = "<p>Your cart is empty.</p>";
+          return;
+        }
+
+        let total = 0;
+        let summaryHTML = "<ul class='list-group mb-3'>";
+        cartItems.forEach(item => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          summaryHTML += `
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">${item.name}</h6>
+                <small class="text-muted">Quantity: ${item.quantity}</small>
+              </div>
+              <span class="text-muted">$${itemTotal.toFixed(2)}</span>
+            </li>
+          `;
+        });
+        const tax = total * 0.15;
+        const grandTotal = total + tax;
+        summaryHTML += `
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Subtotal</span>
+            <strong>$${total.toFixed(2)}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Tax (15%)</span>
+            <strong>$${tax.toFixed(2)}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total</span>
+            <strong>$${grandTotal.toFixed(2)}</strong>
+          </li>
+        </ul>`;
+        cartSummary.innerHTML = summaryHTML;
+      }
+
+      async function validateForm() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const address = document.getElementById("address").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const zip = document.getElementById("zip").value;
+
+        if (!email || !password || !address || !city || !state || !zip) {
+          document.getElementById("error-message").textContent = "All fields marked with * are required.";
+          return false;
+        }
+
+        return await validateCredentials(email, password);
+      }
+
+      async function validateCredentials(email, password) {
+        try {
+          const response = await fetch('users.json');
+          const users = await response.json();
+          const user = users.find(user => user.email === email && user.password === password);
+          if (user) {
+            const userInfo = { email, address, city, state, zip, apartment: document.getElementById("apartment").value };
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            return true;
+          } else {
+            document.getElementById("error-message").textContent = "Invalid email or password.";
+            return false;
+          }
+        } catch (error) {
+          console.error("Error loading users.json:", error);
+          return false;
+        }
+      }
+
+      document.getElementById("checkout-form").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        const isValid = await validateForm();
+        if (isValid) {
+          const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+          localStorage.setItem("cartItems", JSON.stringify(cartItems)); // Store cart items
+          alert("Order confirmed!");
+          window.location.href = "confirmation.html";
+        }
       });
-    </script>
-  </body>
+
+      displayCartSummary();
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cartSummary = document.getElementById("cart-summary");
+
+      function displayCartSummary() {
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        if (cartItems.length === 0) {
+          cartSummary.innerHTML = "<p>Your cart is empty.</p>";
+          return;
+        }
+
+        let total = 0;
+        let summaryHTML = "<ul class='list-group mb-3'>";
+        cartItems.forEach(item => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          summaryHTML += `
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">${item.name}</h6>
+              <small class="text-muted">Quantity: ${item.quantity}</small>
+            </div>
+            <span class="text-muted">$${itemTotal.toFixed(2)}</span>
+          </li>
+          `;
+        });
+        const tax = total * 0.15;
+        const grandTotal = total + tax;
+        summaryHTML += `
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Subtotal</span>
+            <strong>$${total.toFixed(2)}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Tax (15%)</span>
+            <strong>$${tax.toFixed(2)}</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total</span>
+            <strong>$${grandTotal.toFixed(2)}</strong>
+          </li>
+        </ul>`;
+        cartSummary.innerHTML = summaryHTML;
+      }
+
+      async function validateForm() {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const address = document.getElementById("address").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const zip = document.getElementById("zip").value;
+
+        if (!email || !password || !address || !city || !state || !zip) {
+          document.getElementById("error-message").textContent = "All fields marked with * are required.";
+          return false;
+        }
+
+        return await validateCredentials(email, password);
+      }
+
+      async function validateCredentials(email, password) {
+        try {
+          const response = await fetch('users.json');
+          const users = await response.json();
+          const user = users.find(user => user.email === email && user.password === password);
+          if (user) {
+            const userInfo = { email, address, city, state, zip };
+            localStorage.setItem("userInfo", JSON.stringify(userInfo));
+            return true;
+          } else {
+            document.getElementById("error-message").textContent = "Invalid email or password.";
+            return false;
+          }
+        } catch (error) {
+          console.error("Error loading users.json:", error);
+          return false;
+        }
+      }
+
+      document.getElementById("checkout-form").addEventListener("submit", async function (event) {
+        const isValid = await validateForm();
+        if (isValid) {
+          const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+          localStorage.setItem("cartItems", JSON.stringify(cartItems)); // Store cart items
+          alert("Order confirmed!");
+          window.location.href = "confirmation.html";
+        }
+      });
+
+      displayCartSummary();
+    });
+  </script>
+</body>
+
 </html>
