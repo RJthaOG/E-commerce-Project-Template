@@ -42,63 +42,7 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
-      const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-      if (!userInfo.email) {
-        document.getElementById("order-summary").innerHTML = "<p>No order information available.</p>";
-        return;
-      }
-
-      const userInfoHTML = `
-        <h2>Shipping Information</h2>
-        <p><strong>email:</strong> ${userInfo.email}</p>
-        <p><strong>address:</strong> ${userInfo.address || ''} ${userInfo.apartment || ''}</p>
-        <p><strong>city:</strong> ${userInfo.city || ''}</p>
-        <p><strong>state:</strong> ${userInfo.state || ''}</p>
-        <p><strong>zip:</strong> ${userInfo.zip || ''}</p>
-      `;
-      document.getElementById("order-summary").innerHTML = userInfoHTML;
-
-      if (cartItems.length === 0) {
-        document.getElementById("order-summary").innerHTML += "<p>Your cart is empty.</p>";
-        return;
-      }
-
-      let total = 0;
-      let summaryHTML = "<h2>Order Summary</h2><ul class='list-group mb-3'>";
-      cartItems.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        total += itemTotal;
-        summaryHTML += `
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">${item.name}</h6>
-              <small class="text-muted">Quantity: ${item.quantity}</small>
-            </div>
-            <span class="text-muted">$${itemTotal.toFixed(2)}</span>
-          </li>
-        `;
-      });
-      const tax = total * 0.15;
-      const grandTotal = total + tax;
-      summaryHTML += `
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Subtotal</span>
-          <strong>$${total.toFixed(2)}</strong>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Tax (15%)</span>
-          <strong>$${tax.toFixed(2)}</strong>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total</span>
-          <strong>$${grandTotal.toFixed(2)}</strong>
-        </li>
-      </ul>`;
-      document.getElementById("order-summary").innerHTML += summaryHTML;
-    });
+  
   </script>
 </body>
 
