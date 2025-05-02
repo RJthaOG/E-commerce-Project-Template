@@ -37,7 +37,7 @@
       <!-- Order summary will be dynamically inserted here -->
     </div>
     <p>
-      Thank you for your business! Your order will never be shipped 👌
+      Thank you for your Money ! Your order will be shipped in 420 weeks 👌
     </p>
   </div>
 
@@ -54,10 +54,10 @@
       const userInfoHTML = `
         <h2>Shipping Information</h2>
         <p><strong>email:</strong> ${userInfo.email}</p>
-        <p><strong>address:</strong> ${userInfo.address} ${userInfo.apartment || ''}</p>
-        <p><strong>city:</strong> ${userInfo.city}</p>
-        <p><strong>state:</strong> ${userInfo.state}</p>
-        <p><strong>zip:</strong> ${userInfo.zip}</p>
+        <p><strong>address:</strong> ${userInfo.address || ''} ${userInfo.apartment || ''}</p>
+        <p><strong>city:</strong> ${userInfo.city || ''}</p>
+        <p><strong>state:</strong> ${userInfo.state || ''}</p>
+        <p><strong>zip:</strong> ${userInfo.zip || ''}</p>
       `;
       document.getElementById("order-summary").innerHTML = userInfoHTML;
 
