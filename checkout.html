@@ -137,7 +137,35 @@
     </form>
   </div>
   <script>
-  
+    document.addEventListener("DOMContentLoaded", function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cartData = urlParams.get("cart");
+      const cart = cartData ? JSON.parse(decodeURIComponent(cartData)) : [];
+      const cartSummary = document.getElementById("cart-summary");
+
+      if (cart.length === 0) {
+        cartSummary.innerHTML = "<p>Your cart is empty.</p>";
+      } else {
+        let total = 0;
+        const cartItems = cart
+          .map((item) => {
+            total += item.price;
+            return `
+              <div class="cart-item">
+                <p>${item.name} - $${item.price.toFixed(2)}</p>
+              </div>
+            `;
+          })
+          .join("");
+
+        cartSummary.innerHTML = `
+          <h2>Cart Summary</h2>
+          ${cartItems}
+          <hr />
+          <p><strong>Total: $${total.toFixed(2)}</strong></p>
+        `;
+      }
+    });
   </script>
 </body>
 

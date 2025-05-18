@@ -1,3 +1,4 @@
 {
-  "livePreview.autoRefreshPreview": "On All Changes in Editor"
+  "livePreview.autoRefreshPreview": "On All Changes in Editor",
+  "liveServer.settings.port": 5501
 }
